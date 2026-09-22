@@ -1,0 +1,34 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Primeiro CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+
+jobs:
+  Compilar:
+  # criar maquina virtual para usar no pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fazer o git clone
+        uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Executar primeiro comando 
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Executaando dois ou mais comandos
+        run: |
+          ls -l
+          echo Fim do Processo.
