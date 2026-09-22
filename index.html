@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa História: A Jornada do Brasil</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter e Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brGreen: '#008758',
+                        brGreenDark: '#005f3e',
+                        brYellow: '#FFDF00',
+                        brYellowDark: '#d8bd00',
+                        brBlue: '#002776',
+                        brBlueDark: '#00194d',
+                        earthy: '#795548',
+                        warmBg: '#fcfbf7',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #002776 0%, #005f3e 60%, #1a4d2e 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+        }
+        .timeline-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+        .timeline-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .timeline-scroll::-webkit-scrollbar-thumb {
+            background: #008758;
+            border-radius: 10px;
+        }
+        .accent-border {
+            border-left: 4px solid #008758;
+        }
+    </style>
+</head>
+<body class="bg-warmBg text-slate-800 font-sans leading-relaxed">
+
+    <!-- Header / Navbar Sticky -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full bg-brGreen flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+                    🇧🇷
+                </div>
+                <div>
+                    <span class="font-serif text-xl font-bold text-brBlue block leading-none">História do Brasil</span>
+                    <span class="text-xs text-slate-500 font-medium tracking-wide uppercase">Jornada Interativa</span>
+                </div>
+            </a>
+
+            <!-- Search Bar in Header -->
+            <div class="relative max-w-xs sm:max-w-md w-full hidden sm:block">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInput" onkeyup="filterContent()" placeholder="Pesquisar personagem, evento ou termo..." 
+                    class="w-full pl-10 pr-4 py-2 text-sm bg-slate-100 rounded-full focus:outline-none focus:ring-2 focus:ring-brGreen focus:bg-white transition-all border border-transparent focus:border-brGreen">
+            </div>
+
+            <!-- Quiz Quick Link Button -->
+            <a href="#quiz-section" class="inline-flex items-center space-x-2 bg-brYellow text-brBlueDark font-semibold px-4 py-2 rounded-full hover:bg-yellow-400 transition-colors shadow-sm text-sm">
+                <i class="fa-solid fa-brain"></i>
+                <span class="hidden md:inline">Testar Conhecimento</span>
+            </a>
+        </div>
+
+        <!-- Search input mobile version -->
+        <div class="p-3 bg-slate-50 border-t sm:hidden">
+            <div class="relative w-full">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInputMobile" onkeyup="syncAndFilter(this.value)" placeholder="Pesquisar no acervo histórico..." 
+                    class="w-full pl-10 pr-4 py-2 text-sm bg-white border border-slate-300 rounded-full focus:outline-none focus:ring-2 focus:ring-brGreen">
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="inline-block bg-white/10 text-brYellow px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-4 backdrop-blur-sm border border-white/20">
+                Uma Viagem Através dos Séculos
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-serif font-extrabold tracking-tight text-white mb-6 leading-tight">
+                A Grande Epopeia do <span class="text-brYellow">Povo Brasileiro</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-200 max-w-2xl mx-auto font-light leading-relaxed mb-8">
+                Das sociedades originárias pré-cabralinas aos desafios da Era Digital. Explore as lutas, culturas, transformações e personalidades que moldaram a maior nação da América Latina.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-sm font-medium">
+                <a href="#pre-cabralino" class="bg-brGreen hover:bg-brGreenDark text-white px-6 py-3 rounded-full transition-all duration-200 shadow-lg flex items-center space-x-2">
+                    <span>Iniciar Jornada</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+                <a href="#timeline-nav" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-6 py-3 rounded-full transition-all duration-200 backdrop-blur-sm">
+                    Ver Linha do Tempo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Timeline Navigation Bar -->
+    <nav id="timeline-nav" class="bg-white border-b border-slate-200 sticky top-20 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center overflow-x-auto py-3 space-x-2 sm:space-x-4 timeline-scroll no-scrollbar">
+                <a href="#pre-cabralino" class="timeline-link flex-shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-slate-600 hover:text-brGreen hover:bg-green-50 transition-colors">
+                    1. Pré-Cabralino
+                </a>
+                <a href="#colonia" class="timeline-link flex-shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-slate-600 hover:text-brGreen hover:bg-green-50 transition-colors">
+                    2. Brasil Colônia
+                </a>
+                <a href="#imperio" class="timeline-link flex-shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-slate-600 hover:text-brGreen hover:bg-green-50 transition-colors">
+                    3. Brasil Império
+                </a>
+                <a href="#republica-velha" class="timeline-link flex-shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-slate-600 hover:text-brGreen hover:bg-green-50 transition-colors">
+                    4. República Velha
+                </a>
+                <a href="#era-vargas" class="timeline-link flex-shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-slate-600 hover:text-brGreen hover:bg-green-50 transition-colors">
+                    5. Era Vargas
+                </a>
+                <a href="#populista" class="timeline-link flex-shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-slate-600 hover:text-brGreen hover:bg-green-50 transition-colors">
+                    6. República Populista
+                </a>
+                <a href="#ditadura" class="timeline-link flex-shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-slate-600 hover:text-brGreen hover:bg-green-50 transition-colors">
+                    7. Ditadura Militar
+                </a>
+                <a href="#nova-republica" class="timeline-link flex-shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-slate-600 hover:text-brGreen hover:bg-green-50 transition-colors">
+                    8. Nova República
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-20">
+
+        <!-- SECTION 1: PERÍODO PRÉ-CABRALINO -->
+        <section id="pre-cabralino" class="history-section scroll-mt-36">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-lg">01</span>
+                <div>
+                    <span class="text-xs font-semibold text-emerald-700 tracking-wider uppercase">Antes de 1500</span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">Período Pré-Cabralino: Povos Originários</h2>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
+                <p class="text-slate-700 leading-relaxed text-base sm:text-lg mb-6">
+                    Antes do desembarque das caravelas portuguesas, o território que hoje corresponde ao Brasil era habitado há milhares de anos por uma imensa diversidade de povos indígenas. Estima-se que viviam na região entre 3 e 5 milhões de habitantes, divididos em centenas de etnias com línguas, tradições e modos de vida complexos, como os troncos linguísticos <strong>Tupi-Guarani</strong>, <strong>Macro-Jê</strong>, <strong>Aruaque</strong> e <strong>Cariba</strong>.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-amber-50/60 p-5 rounded-xl border border-amber-200">
+                        <h3 class="font-serif font-bold text-amber-900 text-lg mb-2 flex items-center">
+                            <i class="fa-solid fa-campground text-amber-700 mr-2"></i> Os Sambaquis e a Arqueologia
+                        </h3>
+                        <p class="text-sm text-slate-700">
+                            Nas regiões litorâneas, grupos de caçadores-coletores deixaram registros fascinantes conhecidos como <em>sambaquis</em> (montículos de conchas e restos orgânicos). Na Amazônia, civilizações complexas desenvolveram a famosa "Terra Preta de Índio" e cerâmicas sofisticadas, como as culturas Marajoara e Tapajônica.
+                        </p>
+                    </div>
+                    <div class="bg-emerald-50/60 p-5 rounded-xl border border-emerald-200">
+                        <h3 class="font-serif font-bold text-emerald-900 text-lg mb-2 flex items-center">
+                            <i class="fa-solid fa-leaf text-emerald-700 mr-2"></i> Relação com a Natureza
+                        </h3>
+                        <p class="text-sm text-slate-700">
+                            As sociedades originárias possuíam amplo conhecimento em manejo da biodiversidade, agricultura (mandioca, milho, batata-doce) e medicina natural. Não existia a propriedade privada da terra como na Europa; a vida comunitária e a oralidade eram pilares centrais.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personagem/Destaque Card -->
+            <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm accent-border">
+                <h4 class="font-bold text-slate-900 text-lg mb-2">Luzia: O Fóssil Humano Mais Antigo das Américas</h4>
+                <p class="text-sm text-slate-600 mb-3">
+                    Descoberto na década de 1970 em Lagoa Santa (Minas Gerais), o esqueleto de Luzia data de aproximadamente 11.500 a 13.000 anos. Sua descoberta revolucionou as teorias sobre o povoamento do continente americano.
+                </p>
+                <span class="inline-block text-xs font-semibold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full">Arqueologia Brasileira</span>
+            </div>
+        </section>
+
+        <!-- SECTION 2: BRASIL COLÔNIA -->
+        <section id="colonia" class="history-section scroll-mt-36">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-10 h-10 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-lg">02</span>
+                <div>
+                    <span class="text-xs font-semibold text-amber-700 tracking-wider uppercase">1500 – 1822</span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">Brasil Colônia: Açúcar, Ouro e Resistência</h2>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
+                <p class="text-slate-700 leading-relaxed text-base sm:text-lg mb-6">
+                    Em 22 de abril de 1500, a frota de Pedro Álvares Cabral aportou em Monte Pascoal (Bahia). Teve início o ciclo mercantilista. De início focado na extração do <strong>Pau-Brasil</strong>, o projeto colonizador consolida-se a partir de 1530 com as Capitanias Hereditárias e os Engenhos de Açúcar no Nordeste.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="text-amber-700 font-bold text-lg mb-1"><i class="fa-solid fa-cubes-stacked mr-1"></i> Ciclo do Açúcar</div>
+                        <p class="text-xs text-slate-600">Baseado no latifúndio monocultor, no Pacto Colonial e na escravização massiva de africanos. Pernambuco e Bahia tornam-se os centros econômicos.</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="text-yellow-600 font-bold text-lg mb-1"><i class="fa-solid fa-coins mr-1"></i> Ciclo do Ouro</div>
+                        <p class="text-xs text-slate-600">No século XVIII, a descoberta de minérios em Minas Gerais transfere o eixo socioeconômico para o Centro-Sul, estimulando a urbanização e o Barroco.</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="text-red-700 font-bold text-lg mb-1"><i class="fa-solid fa-link mr-1"></i> A Escravidão</div>
+                        <p class="text-xs text-slate-600">Pilar trágico da economia colonial. Milhões de africanos foram trazidos forçadamente, moldando a demografia, a cultura e a resistência antirracista.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expandable Cards for Historical Figures -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Zumbi dos Palmares -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-serif font-bold text-lg text-slate-900">Zumbi dos Palmares</h4>
+                        <span class="text-xs font-semibold bg-red-100 text-red-800 px-2.5 py-1 rounded-full">Resistência Negra</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4">
+                        Líder emblemático do Quilombo dos Palmares, a maior comunidade autônoma de escravizados libertos nas Américas. Zumbi tornou-se o grande símbolo da luta pela liberdade e igualdade no Brasil.
+                    </p>
+                    <div class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-calendar mr-1"></i> Falecido em 20 de Novembro de 1695</div>
+                </div>
+
+                <!-- Tiradentes / Inconfidência -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-serif font-bold text-lg text-slate-900">Tiradentes e a Inconfidência</h4>
+                        <span class="text-xs font-semibold bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full">Movimento Emancipatório</span>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-4">
+                        Joaquim José da Silva Xavier, o Tiradentes, integrou a Inconfidência Mineira (1789) contra a opressão fiscal de Portugal (a "Derrama"). Tornou-se o patrono civico da República após sua execução.
+                    </p>
+                    <div class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-location-dot mr-1"></i> Vila Rica (Ouro Preto - MG)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: BRASIL IMPÉRIO -->
+        <section id="imperio" class="history-section scroll-mt-36">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-10 h-10 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-lg">03</span>
+                <div>
+                    <span class="text-xs font-semibold text-blue-700 tracking-wider uppercase">1822 – 1889</span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">Brasil Império: Independência e Consolidação</h2>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
+                <p class="text-slate-700 leading-relaxed text-base sm:text-lg mb-6">
+                    A vinda da Família Real Portuguesa ao Brasil em 1808 preparou o terreno para a <strong>Independência em 7 de setembro de 1822</strong>, declarada por D. Pedro I. O país transformou-se em uma monarquia constitucional singular na América Latina, atravessando períodos conturbados até a consolidação do Segundo Reinado.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="border-l-4 border-brBlue pl-4 py-1">
+                        <h3 class="font-bold text-slate-900">Primeiro Reinado & Período Regencial (1822-1840)</h3>
+                        <p class="text-sm text-slate-600">Marcado pela Constituição de 1824, abdicação de D. Pedro I em 1831 e forte instabilidade política com revoltas provinciais (Sabinada, Balaiada, Farroupilha, Cabanagem).</p>
+                    </div>
+                    <div class="border-l-4 border-brGreen pl-4 py-1">
+                        <h3 class="font-bold text-slate-900">Segundo Reinado com Dom Pedro II (1840-1889)</h3>
+                        <p class="text-sm text-slate-600">Período de estabilidade relativa, expansão da cafeicultura no Vale do Paraíba e Oeste Paulista, modernização infraestrutural e a sangrenta Guerra do Paraguai (1864-1870).</p>
+                    </div>
+                    <div class="border-l-4 border-amber-500 pl-4 py-1">
+                        <h3 class="font-bold text-slate-900">Fim da Escravidão & A Lei Áurea (1888)</h3>
+                        <p class="text-sm text-slate-600">Graças ao forte movimento abolicionista liderado por negros e intelectuais (como Luiz Gama, André Rebouças e José do Patrocínio), a Princesa Isabel assina a Lei Áurea em 13 de maio de 1888.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-brBlueDark to-brBlue text-white p-6 rounded-xl shadow-md">
+                <h4 class="font-serif text-xl font-bold mb-2 text-brYellow">Personagem em Destaque: Dom Pedro II</h4>
+                <p class="text-sm text-slate-200 leading-relaxed mb-4">
+                    Imperador do Brasil por quase 50 anos. Homem erudito, incentivador das artes e ciências, governou o país em um período de grande transição. Sua deposição em 1889 marcou o fim do Império sem resistência armada.
+                </p>
+                <div class="flex items-center space-x-4 text-xs text-brYellow font-medium">
+                    <span><i class="fa-solid fa-crown mr-1"></i> Reinado: 1840 - 1889</span>
+                    <span><i class="fa-solid fa-book mr-1"></i> Patrono da Cultura</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: REPÚBLICA VELHA -->
+        <section id="republica-velha" class="history-section scroll-mt-36">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-10 h-10 rounded-full bg-amber-100 text-amber-900 flex items-center justify-center font-bold text-lg">04</span>
+                <div>
+                    <span class="text-xs font-semibold text-amber-800 tracking-wider uppercase">1889 – 1930</span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">República Velha: Café com Leite e Oligarquias</h2>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
+                <p class="text-slate-700 leading-relaxed text-base sm:text-lg mb-6">
+                    Iniciada com o golpe militar liderado pelo Marechal Deodoro da Fonseca em 15 de novembro de 1889, a Primeira República foi dominada pelas oligarquias rurais paulistas (café) e mineiras (leite), estruturada sobre o <strong>Coronelismo</strong> e o voto de cabresto.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base mb-2"><i class="fa-solid fa-wheat-awn text-amber-600 mr-2"></i> Movimentos Sociais e Tensão</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            O período presenciou fortes revoltas populares contra a miséria e o autoritarismo: a Guerra de Canudos (liderada por Antônio Conselheiro), a Revolta da Vacina na capital do país e o movimento do Cangaço no sertão nordestino.
+                        </p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base mb-2"><i class="fa-solid fa-palette text-purple-600 mr-2"></i> Semana de Arte Moderna (1922)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Ocorria no Theatro Municipal de São Paulo um marco cultural definidor: o Modernismo. Artistas como Mário de Andrade, Oswald de Andrade e Tarsila do Amaral buscaram uma identidade artística genuinamente brasileira.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: ERA VARGAS E ESTADO NOVO -->
+        <section id="era-vargas" class="history-section scroll-mt-36">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-10 h-10 rounded-full bg-slate-200 text-slate-800 flex items-center justify-center font-bold text-lg">05</span>
+                <div>
+                    <span class="text-xs font-semibold text-slate-600 tracking-wider uppercase">1930 – 1945</span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">Era Vargas e Estado Novo: Modernização e Poder</h2>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
+                <p class="text-slate-700 leading-relaxed text-base sm:text-lg mb-6">
+                    A Revolução de 1930 colocou fim à República Velha e elevou <strong>Getúlio Vargas</strong> ao poder. Seu governo transformou radicalmente a estrutura econômica do país, promovendo a industrialização nacional, a urbanização e a legislação trabalhista.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="p-4 bg-slate-100 rounded-lg">
+                        <div class="font-bold text-slate-900 text-sm mb-1">CLT (1943)</div>
+                        <p class="text-xs text-slate-600">Criação da Consolidação das Leis do Trabalho, garantindo salário mínimo, férias remuneradas e carteira de trabalho.</p>
+                    </div>
+                    <div class="p-4 bg-slate-100 rounded-lg">
+                        <div class="font-bold text-slate-900 text-sm mb-1">Industrialização</div>
+                        <p class="text-xs text-slate-600">Fundação de indústrias de base fundamentais como a Companhia Siderúrgica Nacional (CSN) e a Vale do Rio Doce.</p>
+                    </div>
+                    <div class="p-4 bg-slate-100 rounded-lg">
+                        <div class="font-bold text-slate-900 text-sm mb-1">Ditadura do Estado Novo</div>
+                        <p class="text-xs text-slate-600">De 1937 a 1945, Vargas fecha o Congresso, impõe uma Constituição autoritária e institui a censura com o DIP.</p>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 text-xs text-slate-700 flex items-center space-x-3">
+                    <i class="fa-solid fa-person-military-pointing text-brBlue text-2xl"></i>
+                    <div>
+                        <strong>O Brasil na Segunda Guerra Mundial:</strong> A Força Expedicionária Brasileira (FEB) enviou mais de 25 mil soldados à Itália para lutar ao lado dos Aliados contra o nazi-fascismo em 1944.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: REPÚBLICA POPULISTA E BRASÍLIA -->
+        <section id="populista" class="history-section scroll-mt-36">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-10 h-10 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-lg">06</span>
+                <div>
+                    <span class="text-xs font-semibold text-teal-700 tracking-wider uppercase">1945 – 1964</span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">República Populista e a Construção de Brasília</h2>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
+                <p class="text-slate-700 leading-relaxed text-base sm:text-lg mb-6">
+                    Com a redemocratização em 1945, o Brasil vivenciou anos de intenso efervescimento cultural, otimismo econômico e agitação política. É o período da Bossa Nova, do futebol com a vitória da Copa de 1958 e da grande ousadia arquitetônica da era <strong>Juscelino Kubitschek (JK)</strong>.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200">
+                        <span class="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-full">50 Anos em 5</span>
+                        <h3 class="font-serif font-bold text-slate-900 text-lg mt-2 mb-2">Juscelino Kubitschek & Brasília</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Com o Plano de Metas, JK incentivou a indústria automobilística e a construção da nova capital federal, Brasília, projetada por Oscar Niemeyer e Lúcio Costa, inaugurada em 21 de abril de 1960.
+                        </p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200">
+                        <span class="text-xs font-semibold text-red-700 bg-red-50 px-2.5 py-1 rounded-full">Crise Política</span>
+                        <h3 class="font-serif font-bold text-slate-900 text-lg mt-2 mb-2">A Renúncia de Jânio e Governo Jango</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            A renúncia de Jânio Quadros em 1961 e as propostas de Reformas de Base do presidente João Goulart (Jango) geraram intensa polarização ideológica no contexto da Guerra Fria.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: DITADURA MILITAR -->
+        <section id="ditadura" class="history-section scroll-mt-36">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-10 h-10 rounded-full bg-red-100 text-red-800 flex items-center justify-center font-bold text-lg">07</span>
+                <div>
+                    <span class="text-xs font-semibold text-red-700 tracking-wider uppercase">1964 – 1985</span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">Ditadura Militar: Autoritarismo e Resistência</h2>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
+                <p class="text-slate-700 leading-relaxed text-base sm:text-lg mb-6">
+                    O golpe civil-militar de 31 de março de 1964 depôs João Goulart e instalou um regime autoritário que durou 21 anos. O período foi marcado pelo fechamento do Congresso, cassação de direitos políticos, censura severa à imprensa e às artes, torturas e perseguição a opositores.
+                </p>
+
+                <div class="space-y-4 mb-6">
+                    <div class="bg-red-50/50 p-4 rounded-xl border border-red-200">
+                        <h3 class="font-bold text-red-900 text-sm mb-1"><i class="fa-solid fa-triangle-exclamation mr-2"></i> AI-5 (Ato Institucional Nº 5 - 1968)</h3>
+                        <p class="text-xs text-slate-700">O período mais duro do regime. Suspendeu o habeas corpus para crimes políticos, autorizou o fechamento de parlamentos e intensificou a censura cultural.</p>
+                    </div>
+                    <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-200">
+                        <h3 class="font-bold text-amber-900 text-sm mb-1"><i class="fa-solid fa-chart-line mr-2"></i> "Milagre Econômico" e Endividamento</h3>
+                        <p class="text-xs text-slate-700">Período de elevado crescimento do PIB nos anos 1970, porém acompanhado pelo aumento vertiginoso da desigualdade social e da dívida externa.</p>
+                    </div>
+                </div>
+
+                <!-- Diretas Já e Redemocratização -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h4 class="font-serif font-bold text-slate-900 text-lg mb-2">O Movimento Diretas Já (1983-1984)</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-3">
+                        A maior mobilização popular da história do país reuniu milhões de pessoas nas ruas exigindo eleições diretas para a presidência da República, pavimentando o caminho para o fim da ditadura.
+                    </p>
+                    <span class="inline-block bg-brYellow/20 text-yellow-900 text-xs font-semibold px-3 py-1 rounded-full">Redemocratização</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: NOVA REPÚBLICA -->
+        <section id="nova-republica" class="history-section scroll-mt-36">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-10 h-10 rounded-full bg-brGreen/20 text-brGreenDark flex items-center justify-center font-bold text-lg">08</span>
+                <div>
+                    <span class="text-xs font-semibold text-brGreenDark tracking-wider uppercase">1985 – Atualmente</span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">Nova República: Democracia e Desafios Contemporâneos</h2>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8 mb-8 shadow-sm">
+                <p class="text-slate-700 leading-relaxed text-base sm:text-lg mb-6">
+                    A posse de José Sarney em 1985 iniciou a Nova República. O maior pilar desse novo tempo é a <strong>Constituição Cidadã de 1988</strong>, que consolidou os direitos fundamentais, o sistema de saúde universal (SUS) e as garantias democráticas no Brasil.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <div class="font-bold text-brBlue text-sm mb-1"><i class="fa-solid fa-money-bill-wave mr-1"></i> Plano Real (1994)</div>
+                        <p class="text-xs text-slate-600">Elaborado na gestão de Itamar Franco e sob liderança de Fernando Henrique Cardoso, estabilizou a economia acabando com a hiperinflação.</p>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <div class="font-bold text-brGreenDark text-sm mb-1"><i class="fa-solid fa-hands-holding-circle mr-1"></i> Programas Sociais & Inclusão</div>
+                        <p class="text-xs text-slate-600">A partir dos anos 2000, o Brasil expandiu políticas de combate à pobreza e o acesso de minorias ao ensino superior.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-6 rounded-xl">
+                    <h3 class="font-serif font-bold text-lg mb-2 text-brYellow">O Brasil na Era Digital e Globalizada</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Hoje, o Brasil destaca-se como uma das maiores economias do mundo, potência agroambiental e cultural, enfrentando os desafios contemporâneos de preservação da Amazônia, transição energética e fortalecimento contínuo de suas instituições democráticas.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZ INTERATIVO SECTION -->
+        <section id="quiz-section" class="scroll-mt-36 bg-gradient-to-br from-brBlueDark to-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <span class="bg-brYellow text-brBlueDark px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+                    Desafio Histórico
+                </span>
+                <h2 class="text-3xl font-serif font-bold mt-3 mb-2 text-white">Testes Seus Conhecimentos</h2>
+                <p class="text-slate-300 text-sm">Responda às questões abaixo e descubra o quanto você domina a História do Brasil!</p>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quizContainer" class="max-w-xl mx-auto bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
+                <div id="quizContent">
+                    <div class="flex justify-between text-xs text-slate-300 font-medium mb-4">
+                        <span id="quizProgress">Pergunta 1 de 5</span>
+                        <span id="quizScore">Pontuação: 0</span>
+                    </div>
+
+                    <h3 id="quizQuestion" class="text-lg font-semibold text-white mb-6 leading-snug">
+                        Carregando pergunta...
+                    </h3>
+
+                    <div id="quizOptions" class="space-y-3">
+                        <!-- Botões das opções serão gerados por JS -->
+                    </div>
+
+                    <div id="quizFeedback" class="mt-4 p-3 rounded-lg text-sm hidden font-medium text-center"></div>
+
+                    <button id="nextBtn" onclick="nextQuestion()" class="mt-6 w-full bg-brYellow hover:bg-yellow-400 text-brBlueDark font-bold py-3 rounded-xl transition-all hidden">
+                        Próxima Pergunta <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+
+                <!-- Quiz Completion View -->
+                <div id="quizResult" class="hidden text-center py-6">
+                    <i class="fa-solid fa-trophy text-brYellow text-5xl mb-4"></i>
+                    <h3 class="text-2xl font-serif font-bold text-white mb-2">Quiz Concluído!</h3>
+                    <p id="finalScoreText" class="text-lg text-slate-200 mb-6"></p>
+                    <button onclick="restartQuiz()" class="bg-brGreen hover:bg-brGreenDark text-white font-bold px-6 py-3 rounded-full transition-all">
+                        Tentar Novamente <i class="fa-solid fa-rotate-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center sm:text-left grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <h3 class="font-serif font-bold text-white text-lg mb-2">História do Brasil Interativa</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Plataforma educacional dedicada a difundir a memória, os marcos culturais e a rica diversidade histórica da sociedade brasileira.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white text-sm mb-3">Atalhos de Períodos</h4>
+                <ul class="text-xs space-y-2">
+                    <li><a href="#pre-cabralino" class="hover:text-brYellow transition-colors">Povos Originários</a></li>
+                    <li><a href="#colonia" class="hover:text-brYellow transition-colors">Período Colonial</a></li>
+                    <li><a href="#imperio" class="hover:text-brYellow transition-colors">Império do Brasil</a></li>
+                    <li><a href="#nova-republica" class="hover:text-brYellow transition-colors">Nova República</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white text-sm mb-3">Compromisso Educacional</h4>
+                <p class="text-xs text-slate-400">
+                    Conteúdo estruturado em conformidade com as diretrizes de história do Brasil para fins pedagógicos e de pesquisa cultural.
+                </p>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+            &copy; 2026 História do Brasil Interativa. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        /* --- DADOS DO QUIZ --- */
+        const quizData = [
+            {
+                question: "Qual foi o principal documento assinado em 1888 que aboliu formalmente a escravidão no Brasil?",
+                options: ["Lei do Ventre Livre", "Lei Áurea", "Lei dos Sexagenários", "Constituição de 1824"],
+                correct: 1,
+                explanation: "A Lei Áurea foi assinada pela Princesa Isabel em 13 de maio de 1888, extinguindo legalmente a escravidão no país."
+            },
+            {
+                question: "Quem foi o arquiteto encarregado dos principais projetos monumentais de Brasília?",
+                options: ["Lúcio Costa", "Oscar Niemeyer", "Burle Marx", "Tom Jobim"],
+                correct: 1,
+                explanation: "Oscar Niemeyer projetou os edifícios públicos emblemáticos de Brasília, enquanto Lúcio Costa desenhou o Plano Piloto urbanístico."
+            },
+            {
+                question: "Qual fóssil humano mais antigo das Américas foi descoberto em Lagoa Santa (MG)?",
+                options: ["Luzia", "Anhangüera", "Tupinambá", "Zumbi"],
+                correct: 0,
+                explanation: "O esqueleto de Luzia tem mais de 11.000 anos e é o registro humano mais antigo encontrado no continente."
+            },
+            {
+                question: "A Semana de Arte Moderna de 1922, marco do Modernismo no Brasil, ocorreu em qual cidade?",
+                options: ["Rio de Janeiro", "Salvador", "São Paulo", "Recife"],
+                correct: 2,
+                explanation: "Ocorreu no Theatro Municipal de São Paulo em fevereiro de 1922."
+            },
+            {
+                question: "Em que ano foi promulgada a atual Constituição da República Federativa do Brasil, conhecida como Constituição Cidadã?",
+                options: ["1964", "1985", "1988", "1994"],
+                correct: 2,
+                explanation: "A Constituição vigente foi promulgada em 5 de outubro de 1988, garantindo amplos direitos civis e sociais."
+            }
+        ];
+
+        let currentQ = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const q = quizData[currentQ];
+            document.getElementById('quizProgress').innerText = `Pergunta ${currentQ + 1} de ${quizData.length}`;
+            document.getElementById('quizScore').innerText = `Pontuação: ${score}`;
+            document.getElementById('quizQuestion').innerText = q.question;
+            
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+            
+            document.getElementById('quizFeedback').classList.add('hidden');
+            document.getElementById('nextBtn').classList.add('hidden');
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-all border border-white/10 flex items-center justify-between";
+                btn.innerHTML = `<span>${opt}</span> <i class="fa-regular fa-circle text-slate-400"></i>`;
+                btn.onclick = () => selectOption(idx, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectOption(index, selectedBtn) {
+            const q = quizData[currentQ];
+            const buttons = document.getElementById('quizOptions').children;
+            
+            // Desabilita todos os botões após a escolha
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.add('opacity-70');
+            }
+
+            const feedback = document.getElementById('quizFeedback');
+            feedback.classList.remove('hidden');
+
+            if (index === q.correct) {
+                score++;
+                selectedBtn.classList.remove('bg-white/10', 'opacity-70');
+                selectedBtn.classList.add('bg-emerald-600', 'text-white');
+                feedback.className = "mt-4 p-3 rounded-lg text-xs font-semibold bg-emerald-500/20 text-emerald-200 border border-emerald-500/30";
+                feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Correto! ${q.explanation}`;
+            } else {
+                selectedBtn.classList.remove('bg-white/10', 'opacity-70');
+                selectedBtn.classList.add('bg-red-600', 'text-white');
+                
+                // Destaca a correta
+                buttons[q.correct].classList.remove('opacity-70');
+                buttons[q.correct].classList.add('bg-emerald-600', 'text-white');
+
+                feedback.className = "mt-4 p-3 rounded-lg text-xs font-semibold bg-red-500/20 text-red-200 border border-red-500/30";
+                feedback.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Incorreto. ${q.explanation}`;
+            }
+
+            document.getElementById('quizScore').innerText = `Pontuação: ${score}`;
+            document.getElementById('nextBtn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQ++;
+            if (currentQ < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizContent').classList.add('hidden');
+            document.getElementById('quizResult').classList.remove('hidden');
+            document.getElementById('finalScoreText').innerText = `Você acertou ${score} de ${quizData.length} perguntas!`;
+        }
+
+        function restartQuiz() {
+            currentQ = 0;
+            score = 0;
+            document.getElementById('quizResult').classList.add('hidden');
+            document.getElementById('quizContent').classList.remove('hidden');
+            loadQuestion();
+        }
+
+        // Inicializa o Quiz ao carregar a página
+        window.onload = function() {
+            loadQuestion();
+        };
+
+        /* --- FILTRO DE CONTEÚDO / BUSCA EM TEMPO REAL --- */
+        function filterContent() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const sections = document.querySelectorAll('.history-section');
+
+            sections.forEach(sec => {
+                const text = sec.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    sec.style.display = "block";
+                } else {
+                    sec.style.display = "none";
+                }
+            });
+        }
+
+        function syncAndFilter(val) {
+            document.getElementById('searchInput').value = val;
+            filterContent();
+        }
+    </script>
+</body>
+</html>
