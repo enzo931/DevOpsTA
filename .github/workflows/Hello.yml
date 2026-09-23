@@ -75,7 +75,7 @@ jobs:
        with: 
         file: dockerfile
         push: true
-        tags: enzomanzoni001/img_ronaldo:1.0
+        tags: enzomanzoni001/img_ronaldinho:1.0
  
 
    
